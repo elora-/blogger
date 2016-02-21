@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
 
     @comment.save
 
+    flash.notice = "Comment posted successfully, #{@comment.author_name}!"
+
     redirect_to article_path(@comment.article)
   end
 
