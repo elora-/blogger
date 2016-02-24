@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
-  has_many :attachments
+  has_many :attachments, autosave: true
 
   def tag_list
     tags.join(", ")
@@ -15,14 +15,14 @@ class Article < ActiveRecord::Base
     self.tags = new_or_found_tags
   end
 
+  def images
+    attachments.map {|a| a.image}
+  end
+
   def images=(images)
     # raise images.pretty_inspect
     images.each do |image|
-      attachments.create(image: image)
+      attachments.new(image: image)
     end
-  end
-
-  def images
-    attachments.map {|a| a.image}
   end
 end
