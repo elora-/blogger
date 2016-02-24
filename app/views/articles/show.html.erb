@@ -17,7 +17,7 @@
 <p><%= @article.body %></p>
 
 <% @article.images.each do |image| %>
-  <div><%= image_tag image.url %></div>
+  <div><%= image_tag image.url(:medium) %></div>
 <% end %>
 
 <h3>Comments (<%= @article.comments.size %>)</h3>
