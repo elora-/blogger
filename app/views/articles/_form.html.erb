@@ -21,6 +21,10 @@
   </p>
 
   <p>
+    <%= f.hidden_field :author, :value => "#{current_user.email}"%>
+  </p>
+
+  <p>
     <%= f.label :images, "Attach an Image" %><br />
     <%= f.file_field :images, type: :file, multiple: true %>
   </p>

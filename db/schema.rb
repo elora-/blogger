@@ -13,12 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20160316192549) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "articles" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "article_id"
