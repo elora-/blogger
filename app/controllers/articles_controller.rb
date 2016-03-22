@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :require_login, except: [:index, :show]
+  before_filter :current_is_author?, only: [:edit, :destroy, :update]
   include ArticlesHelper
 
   def index
@@ -44,5 +45,13 @@ class ArticlesController < ApplicationController
     flash.notice = "Article '#{@article.title}' updated!"
 
     redirect_to article_path(@article)
+  end
+
+  def current_is_author?
+    @article = Article.find(params[:id]) 
+    if
+      !@article.author.eql?("#{current_user.email}")
+      redirect_to article_path(@article)
+    end
   end
 end
